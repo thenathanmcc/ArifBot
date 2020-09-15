@@ -5,10 +5,17 @@ const serverID = '754358974320607272';
 const generalChannelID = '754709353109389395';
 const prefix = '!';
 
+//Add Discord API access token here
 const token = '';
 
+//Bad words ArifBot should search for in a message
 const badWords = ['fuck', 'fck', 'fick', 'bitch', 'btch', 'cunt']
 
+
+/* 
+ * Message Event Listener
+ * Triggered whenever a message is sent in the chat
+ */
 bot.on('message', msg => {
     for (var i in badWords){ //Check message for bad words
         if (msg.content.toLowerCase().match(badWords[i])) {
@@ -49,18 +56,33 @@ bot.on('message', msg => {
     }
 });
 
+
+/*
+ * Guild Member Add Event Listener
+ * Triggered whenever a new member joins the server
+ */
 bot.on('guildMemberAdd', member => {
     const channel = member.guild.channels.cache.find(ch => ch.name === 'general');
     if (!channel) return;
     channel.send(`What\'s up , <@${member.id}>? Welcome to the server. Keen for some Fortnite?`);
 });
 
+
+/*
+ * Guild Member Remove Event Listener
+ * Triggered whenever a member leaves the server
+ */
 bot.on('guildMemberRemove', member => {
     const channel = member.guild.channels.cache.find(ch => ch.name === 'general');
     if (!channel) return;
     channel.send('It\'s a good thing they left. I was about to lose my shit.');
 })
 
+
+/*
+ * Guild Member Presence Update Event Listener
+ * Triggered whenever a member changes status
+ */
 bot.on("presenceUpdate", (oldPresence, newPresence) => {
     if (oldPresence && newPresence) {
         if (oldPresence.status === 'offline' && newPresence.status === 'online') {
@@ -75,6 +97,10 @@ bot.on("presenceUpdate", (oldPresence, newPresence) => {
     }
 });
 
+/*
+ * Ready Event Listener
+ * Triggered everytime the bot comes online
+ */
 bot.on('ready', () => {
     bot.channels.fetch(generalChannelID)
         .then(channel => channel.send("Beep boop! Arifbot is online. What's up, guys?"))
