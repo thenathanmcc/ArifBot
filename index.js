@@ -50,6 +50,8 @@ bot.on('message', msg => {
             msg.channel.send('Imma stab someone in a minute')
         } else if (msg.content.toLowerCase().match("who do you love")) {
             msg.channel.send("I love Sam.")
+        } else if (msg.content.toLowerCase().match('arif') && msg.content.toLowerCase().match('where is your source code')){
+            msg.channel.send("You can find my source code here: https://github.com/thenathanmcc/ArifBot ")
         } else if (msg.content.toLowerCase().match('arif')) {
             msg.channel.send("Did someone say my name?")
         }
