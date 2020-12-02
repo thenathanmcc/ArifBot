@@ -1,3 +1,3 @@
-# ArifBot 
+# BigBrotherBot 
 
-Arif won't be with me in the server, so here is ArifBot.
+Simple discord bot that reads every message in a server channel and responds accordingly.
